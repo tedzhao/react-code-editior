@@ -25,7 +25,7 @@
             margin-right: 10px;
             float: right;
         }
-        .react-code{
+        #react-code{
             margin-top: 10px;
             flex-grow: 1;
             border:solid 1px #cccc;
@@ -49,9 +49,11 @@
     </style>
     <script>
         function runReact(){
+            const code = document.getElementById('react-code').value
+
             fetch('./react', {
                 method: 'POST',
-                body: '123123'
+                body: code
             }).then(res => {
                 res.text().then(html => {
                     const iframe = document.getElementById('react-iframe')
@@ -72,7 +74,7 @@
                 <span>Write your React Code</span>
                 <a class="runReact-button" href="javascript:void(0)" onclick="runReact()">Run</a>
             </div>
-            <textarea class="react-code" placeholder="Write your react code">const RootCompoent = () => (
+            <textarea id="react-code" placeholder="Write your react code">const RootCompoent = () => (
     &lt;div&gt;It works with React&lt;/div&gt;
 )</textarea>
         </div>   
