@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS Online Editor</title>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0 10px;
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .left-side, .right-side{
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+            padding-top: 10px;
+        }
+        .runReact-button{
+            margin-right: 10px;
+            float: right;
+        }
+        .react-code{
+            margin-top: 10px;
+            flex-grow: 1;
+            border:solid 1px #cccc;
+            font-size: 1.2em;
+            resize: none;
+            line-height: 1.8em;
+        }
+        #react-iframe{
+            margin-top: 10px;
+            height: 600px;
+            width: 100%;
+            border:solid 1px #cccc;
+        }
+        .footer{
+            background-color: #ddd;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <script>
+        function runReact(){
+            fetch('./react', {
+                method: 'POST',
+                body: '123123'
+            }).then(res => {
+                res.text().then(html => {
+                    const iframe = document.getElementById('react-iframe')
+
+                    iframe.contentWindow.document.open()
+                    iframe.contentWindow.document.write(html)
+                    iframe.contentWindow.document.close()
+                })  
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>React online editor</h2>
+    <div class="container">
+        <div class="left-side">
+            <div>
+                <span>Write your React Code</span>
+                <a class="runReact-button" href="javascript:void(0)" onclick="runReact()">Run</a>
+            </div>
+            <textarea class="react-code" placeholder="Write your react code">const RootCompoent = () => (
+    &lt;div&gt;It works with React&lt;/div&gt;
+)</textarea>
+        </div>   
+        <div class="right-side">
+            <div>
+                <span>Result</span>
+            </div>
+            <iframe src="about:blank" id="react-iframe">
+            </iframe>
+        </div>
+    </div>
+    <br />
+    <div class="footer">Copyright @ 2021 Ted</div>
+</body>
+</html>
