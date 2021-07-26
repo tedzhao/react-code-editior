@@ -3,7 +3,7 @@ const fs = require('fs')
 const vm = require('vm')
 
 const app = express()
-app.use(express.text({type: 'text/plain'}));
+app.use(express.json({type: 'application/json'}));
 
 app.get('/favicon.ico', function(req, res){
     res.writeHead(200)
@@ -18,9 +18,14 @@ app.get('/', function(req, res){
 app.post('/react', function(req, res){
     res.writeHead(200)
 
+    console.log(req.body)
+    
     const template = fs.readFileSync(__dirname + '/index.html')
+    //const templateText = template.toString().replace('$reactcode', '${reactcode}')
+
     const result = vm.runInNewContext('`' + template + '`', {
-        'reactcode': req.body})
+        'reactversion': req.body.version,
+        'reactcode': req.body.code})
 
     res.end(result)
 })
