@@ -1,0 +1,46 @@
+html, body{
+    margin: 0;
+    padding: 0 10px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left-side, .right-side{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.runReact-button{
+    margin-right: 10px;
+    float: right;
+}
+
+#react-code{
+    margin-top: 10px;
+    flex-grow: 1;
+    border:solid 1px #cccc;
+    font-size: 1.2em;
+    resize: none;
+    line-height: 1.8em;
+}
+
+#react-iframe{
+    margin-top: 10px;
+    height: 600px;
+    width: 100%;
+    border:solid 1px #cccc;
+}
+
+.footer{
+    background-color: #ddd;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
